@@ -24,6 +24,8 @@
     img {
         width: auto;
         height: 100vh;
+        transform: scale(1);
+        animation: pulse 2s infinite alternate;
     }
     #overlay {
         width: 300%;
@@ -32,12 +34,17 @@
         top: -100%;
         left: -100%;
         background-color: transparent;
-        background: radial-gradient(circle, transparent, 3%, black 10%, black);
+        background: radial-gradient(circle, transparent, 2%, black 8%, black);
         animation: flicker 1s infinite alternate;
     }
     @keyframes flicker {
         to {
             background-color: #00000066;
+        }
+    }
+    @keyframes pulse {
+        to {
+            transform: scale(1.05);
         }
     }
 </style>
