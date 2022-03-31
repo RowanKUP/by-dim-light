@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>By dim light...</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        background: black;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    #container {
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        width: max-content;
+        cursor: none;
+    }
+    img {
+        width: auto;
+        height: 100vh;
+    }
+    #overlay {
+        width: 300%;
+        height: 300%;
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        background-color: transparent;
+        background: radial-gradient(circle, transparent, 3%, black 10%, black);
+        animation: flicker 1s infinite alternate;
+    }
+    @keyframes flicker {
+        to {
+            background-color: #00000066;
+        }
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+        <img width="1920" height="2194" src="azathoth.jpg" />
+        <div id="overlay"></div>
+    </div>
+    
+    <script>
+        const holder = document.getElementById('container');
+        const overlay = document.getElementById('overlay');
+        const holderDim = holder.getBoundingClientRect();
+        const midPoint = [holderDim.x + (holder.offsetWidth / 2),holderDim.y + (holder.offsetHeight / 2)];
+        console.log(midPoint);
+        holder.addEventListener('mousemove', moveLight, true);
+        function moveLight(ev) {
+            overlay.style.transform = `translate(${ev.clientX - midPoint[0]}px, ${ev.clientY - midPoint[1]}px)`;
+        }
+
+    </script>
+</body>
+</html>
